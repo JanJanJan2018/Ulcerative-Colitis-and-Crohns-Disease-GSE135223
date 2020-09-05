@@ -1,0 +1,255 @@
+---
+title: "Ulcerative Colitis and Chrons Disease GSE135223"
+author: "Janis Corona"
+date: "9/4/2020"
+output: html_document
+---
+
+This analysis is on gene expression data from a National Center for Bioinformatics study, GSE135223, on samples of blood and other tissue samples having relation to Irritable Bowel Syndrome (IBS) in the form of Chron's Disease (CD), Ulcerative Colitis (UC), or healthy samples. There are also some mock samples that are supposed to be by definition a placebo affect type sample of the in vitro or cell cultures, but the type of sample the mock sample was isn't clear. There are three mock samples, and there are three types of tissue: healthy or non IBS, UC, and CD. The original samples had to each individually be downloaded as zip files and loaded separately. The matrix methos of unloading and writing to a single long file as each is unzipped worked in segmenting or building the matrix of 6377X18 for genesXsamples, but froze up and made R crash or run for a very long time with no results when trying to make each 'list' of the original GSM sample into an integer column. There was also a meta list of 5 rows appended to the Ensembl ID fields for the probe extraction information that was saved separately. 
+
+The way this study was performed by a paraphrase of my own words of the summary, is that there were three healthy donors of blood, peripheral blood mononucleated cells (PBMC), that over the course of 7 days, the blood was separated into differnt samples with 5 samples of Chron's Disease, 5 samples of Ulcerative Colitis, and 5 samples of healthy or non IBS colon resections was added to in order to differentiate the macrophage activity. There were also 3 mock samples that are placebo effects without having added any viral like particles (VLP) of CD, UC, or non-IBS particles from colon resections to. The goal was to monitor the transcriptional responses of the macrophages in the PBMC of healthy cells in response to the VLP additions. The outcome was that the study claimed divergence was significant in the macrophage response of IBS colonic disorders in comparison to IBS colonic disorders.
+
+This study was submitted August 2019, but made public almost a year later in June 2019. The human genome 19 and the Illumnina NovaSeq 6000 machine for capturing the blood sequences and the gene expression values from the samples.
+
+The meta data information is for the machine, Illumina NovaSeq 6000, that had read counts of the nucleotides as: 
+- alignment not unique
+- ambiguous
+- no feature
+- not aligned
+- too low a quality
+
+```{r}
+library(dplyr)
+library(tidyr)
+```
+
+
+```{r}
+GSE135223 <- read.delim('GSE135223_series_matrix.txt',sep='\t')
+GSE135223b <- read.delim('GSE135223_series_matrix.txt',sep='\t',
+                         skip=27,header=F)
+
+```
+
+
+```{r}
+metaData <- GSE135223b[c(2,3,11),-1]
+mdT <- as.data.frame(t(metaData))
+colnames(mdT) <- c('sample','GSM_ID','disease')
+row.names(mdT) <- NULL
+
+mdT$sample <- as.character(paste(mdT$sample))
+mdT$GSM_ID <- as.character(paste(mdT$GSM_ID))
+mdT$disease <- as.character(paste(mdT$disease))
+
+mdT$sample <- gsub('\'','',mdT$sample)
+mdT$disease <- gsub('\'','',mdT$disease)
+mdT$disease <- gsub('disease: ','',mdT$disease)
+
+header <- mdT
+header
+```
+
+
+```{r}
+gz <- data.frame(file=list.files(pattern='^GSM.*gz$'))
+gz$file <- as.character(paste(gz$file))
+gz
+
+gz1 <- gz
+
+gz1$file <- gsub('_.*z$','',gz1$file,perl=T)
+gz1
+```
+
+
+```{r}
+f1 <- read.csv(gz[1,1],sep='\t',header=F)
+f2 <- read.csv(gz[2,1],sep='\t',header=F)
+f3 <- read.csv(gz[3,1],sep='\t',header=F)
+f4 <- read.csv(gz[4,1],sep='\t',header=F)
+f5 <- read.csv(gz[5,1],sep='\t',header=F)
+f6 <- read.csv(gz[6,1],sep='\t',header=F)
+f7 <- read.csv(gz[7,1],sep='\t',header=F)
+f8 <- read.csv(gz[8,1],sep='\t',header=F)
+f9 <- read.csv(gz[9,1],sep='\t',header=F)
+f10 <- read.csv(gz[10,1],sep='\t',header=F)
+f11 <- read.csv(gz[11,1],sep='\t',header=F)
+f12 <- read.csv(gz[12,1],sep='\t',header=F)
+f13 <- read.csv(gz[13,1],sep='\t',header=F)
+f14 <- read.csv(gz[14,1],sep='\t',header=F)
+f15 <- read.csv(gz[15,1],sep='\t',header=F)
+f16 <- read.csv(gz[16,1],sep='\t',header=F)
+f17 <- read.csv(gz[17,1],sep='\t',header=F)
+f18 <- read.csv(gz[18,1],sep='\t',header=F)
+
+colnames(f1)[2] <- 'v1'
+colnames(f2)[2] <- 'v2'
+colnames(f3)[2] <- 'v3'
+colnames(f4)[2] <- 'v4'
+colnames(f5)[2] <- 'v5'
+colnames(f6)[2] <- 'v6'
+colnames(f7)[2] <- 'v7'
+colnames(f8)[2] <- 'v8'
+colnames(f9)[2] <- 'v9'
+colnames(f10)[2] <- 'v10'
+colnames(f11)[2] <- 'v11'
+colnames(f12)[2] <- 'v12'
+colnames(f13)[2] <- 'v13'
+colnames(f14)[2] <- 'v14'
+colnames(f15)[2] <- 'v15'
+colnames(f16)[2] <- 'v16'
+colnames(f17)[2] <- 'v17'
+colnames(f18)[2] <- 'v18'
+
+DF2 <- merge(f1,f2, by.x='V1',by.y='V1')
+DF3 <- merge(DF2,f3, by.x='V1',by.y='V1')
+DF4 <- merge(DF3,f4, by.x='V1',by.y='V1')
+DF5 <- merge(DF4,f5, by.x='V1',by.y='V1')
+DF6 <- merge(DF5,f6, by.x='V1',by.y='V1')
+DF7 <- merge(DF6,f7, by.x='V1',by.y='V1')
+DF8 <- merge(DF7,f8, by.x='V1',by.y='V1')
+DF9 <- merge(DF8,f9, by.x='V1',by.y='V1')
+DF10 <- merge(DF9,f10, by.x='V1',by.y='V1')
+DF11 <- merge(DF10,f11, by.x='V1',by.y='V1')
+DF12 <- merge(DF11,f12, by.x='V1',by.y='V1')
+DF13 <- merge(DF12,f13, by.x='V1',by.y='V1')
+DF14 <- merge(DF13,f14, by.x='V1',by.y='V1')
+DF15 <- merge(DF14,f15, by.x='V1',by.y='V1')
+DF16 <- merge(DF15,f16, by.x='V1',by.y='V1')
+DF17 <- merge(DF16,f17, by.x='V1',by.y='V1')
+DF18 <- merge(DF17,f18, by.x='V1',by.y='V1')
+
+samples <- DF18
+names <- header$sample
+colnames(samples)[1] <- 'Ensembl_ID'
+
+colnames(samples)[2:19] <- names
+
+head(samples,10)
+```
+
+
+```{r}
+metaProbeData5lines <- samples[1:5,]
+
+Data <- samples[-c(1:5),]
+row.names(Data) <- NULL
+head(Data)
+```
+
+
+I want to bring in our body systems and vitamin genes to extract those gene expression values from our ulcerative colitis, Chron's disease, and healthy samples.
+```{r}
+bodySystems <- read.csv('vitaminAndBodySystemSums.csv',sep=',',
+                        header=T,na.strings=c('',' ','NA'),
+                        stringsAsFactors=F)
+```
+
+Lets merge the data
+```{r}
+DF <- merge(bodySystems,Data,by.x='EnsemblID',by.y='Ensembl_ID')
+```
+
+```{r}
+head(DF)
+```
+
+```{r}
+DF2 <- DF %>% group_by(gene) %>% count(gene)
+colnames(DF2)[2] <- 'geneCount'
+head(DF2[order(DF2$geneCount,decreasing=T),])
+```
+
+
+```{r}
+DF3 <- DF %>% group_by(gene) %>% summarise_at(vars('Crohns Disease rep 1':
+                        'Ulcerative Colitis rep 5'),mean)
+```
+
+
+```{r}
+DF4 <- merge(DF2,DF3,by.x='gene',by.y='gene')
+DF5 <- DF[,2:6]
+DF6 <- merge(DF5,DF4,by.x='gene',by.y='gene')
+```
+
+
+```{r}
+DF6$ChronsMean <- apply(DF6[,7:11],1,mean)
+DF6$HealthyMean <- apply(DF6[,12:16],1,mean)
+DF6$UlcerativeColitisMean <- apply(DF6[,20:24],1,mean)
+```
+
+
+```{r}
+DF6$ChronHealthy_foldChange <- ifelse(
+  DF6$ChronsMean == 0 & DF6$HealthyMean == 0, 1,
+                          ifelse(
+  DF6$ChronsMean == 0 & DF6$HealthyMean != 0, 1-DF6$HealthyMean,
+                          ifelse(
+  DF6$ChronsMean != 0 & DF6$HealthyMean == 0, DF6$ChronsMean,
+                          DF6$ChronsMean/DF6$HealthyMean)))
+
+DF6$UlcCol_Healthy_foldChange <- ifelse(
+  DF6$UlcerativeColitisMean == 0 & DF6$HealthyMean == 0, 
+  1,
+                          ifelse(
+  DF6$UlcerativeColitisMean == 0 & DF6$HealthyMean != 0, 
+  1-DF6$HealthyMean,
+                          ifelse(
+  DF6$UlcerativeColitisMean != 0 & DF6$HealthyMean == 0, 
+  DF6$UlcerativeColitisMean,
+                          DF6$UlcerativeColitisMean/DF6$HealthyMean)))
+
+
+```
+
+
+```{r}
+DF7 <- gather(DF6,key='sample',value='sampleValue',c(7:24))
+
+```
+
+```{r}
+DF7$group <- 'group'
+
+chrohns <- grep('Crohns',DF7$sample)
+healthy <- grep('Healthy',DF7$sample)
+mock <- grep('mock',DF7$sample)
+ulcCol <- grep('Ulcerative', DF7$sample)
+
+DF7[chrohns,14] <- 'Chrohns'
+DF7[healthy,14] <- 'healthy'
+DF7[mock,14] <- 'mock'
+DF7[ulcCol,14] <- 'ulc. Col.'
+```
+
+```{r}
+DF8 <- DF7[,-c(4:5)]
+```
+
+
+```{r}
+write.csv(DF7,'UC_CD_mock_vit3_3summs.csv',row.names=F)
+write.csv(DF8,'UC_CD_mock_vit3_1summ.csv',row.names=F)
+write.csv(header,'header.csv',row.names=F)
+write.csv(metaProbeData5lines,'metaProbeInfo.csv',row.names=F)
+write.csv(Data,'sampleData.csv',row.names=F)
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+

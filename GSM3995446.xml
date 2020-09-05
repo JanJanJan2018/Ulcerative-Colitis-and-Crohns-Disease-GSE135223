@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<MINiML xmlns="http://www.ncbi.nlm.nih.gov/geo/info/MINiML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ncbi.nlm.nih.gov/geo/info/MINiML http://www.ncbi.nlm.nih.gov/geo/info/MINiML.xsd" version="0.5.0">
+  <Contributor iid="contrib1">
+    <Person>
+      <First>Kate</First>
+      <Middle>L</Middle>
+      <Last>Jeffrey</Last>
+    </Person>
+    <Department>Gastrointestinal</Department>
+    <Organization>Massachusetts General Hospital</Organization>
+    <Address>
+      <Line>60 Blossom Street</Line>
+      <City>Boston</City>
+      <State>MA</State>
+      <Zip-Code>02114</Zip-Code>
+      <Country>USA</Country>
+    </Address>
+  </Contributor>
+  <Database iid="GEO">
+    <Name>Gene Expression Omnibus (GEO)</Name>
+    <Public-ID>GEO</Public-ID>
+    <Organization>NCBI NLM NIH</Organization>
+    <Web-Link>http://www.ncbi.nlm.nih.gov/geo</Web-Link>
+    <Email>geo@ncbi.nlm.nih.gov</Email>
+  </Database>
+  <Platform iid="GPL24676">
+    <Accession database="GEO">GPL24676</Accession>
+  </Platform>
+  <Sample iid="GSM3995446">
+    <Status database="GEO">
+      <Submission-Date>2019-08-01</Submission-Date>
+      <Release-Date>2020-06-01</Release-Date>
+      <Last-Update-Date>2020-06-02</Last-Update-Date>
+    </Status>
+    <Title>Ulcerative Colitis rep 5</Title>
+    <Accession database="GEO">GSM3995446</Accession>
+    <Type>SRA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>macrophage</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="disease">Ulcerative Colitis</Characteristics>
+      <Treatment-Protocol>SM buffer or viral-like particle (VLP) preparation from non-IBD or IBD tissue or ileostomy was pre-treated for 30  minutes with polymixin B to ensure endotoxin-free conditions. Media was removed from the cells and SM buffer (for mock condition) or VLP preparation was added drop-wise onto the cells at a volume sufficient to cover the well surface. Treatment was left on cells for 1 hour at 37C with occasional rocking. After 1 hour, treatments were removed entirely, cells were gently washed with PBS, and media was replaced. Cells were collected 24 hours after the end of treatment.</Treatment-Protocol>
+      <Growth-Protocol>Peripheral blood mononuclear cells were isolated from the blood of healthy human donors using a Ficoll-based density gradient. Following isolation, adherent cells were cultured on tissue culture-treated plated plates in X-VIVO media containing 100ng/mL rhM-CSF and allowed to differentiate into mature macrophages for 7 days. At this point, cells were counted and replated overnight in fresh media for treatment.</Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>Cells were lysed in 350µL buffer RLT and RNA was isolated using the Qiagen RNeasy Mini Kit with on-column DNase digest (all according to manufacturer's instruction).
+100ng of total RNA from each sample was used for library preparation. First, poly(A)-tailed RNA was enriched for using the NEBnext Poly(A) mRNA magnetic isolation module (E7490; according to manufacturer's instructions). This poly(A)-enriched RNA was then used to construct libraries using the NEBnext Ultra II RNA Library Prep Kit for Illumina (E7770; according to manufacturer's instructions). To allow for multiplexed reads, libraries were dual indexed using indices from NEBnext Multiplex Oligos for Illumina (E6440). Sequencing was done on a NovaSeq S4 flow cell.</Extract-Protocol>
+    </Channel>
+    <Data-Processing>Transcriptome mapping was performed with STAR version 2.5.4a by using the NCBI37 assembly gene annotations
+Read counts for individual genes were produced using the unstranded count feature in HTSeq 0.9.1
+Genome_build: hg19
+Supplementary_files_format_and_content: tab-delimited text files include read count for each sample</Data-Processing>
+    <Platform-Ref ref="GPL24676"/>
+    <Library-Strategy>RNA-Seq</Library-Strategy>
+    <Library-Source>transcriptomic</Library-Source>
+    <Library-Selection>cDNA</Library-Selection>
+    <Instrument-Model>
+      <Predefined>Illumina NovaSeq 6000</Predefined>
+    </Instrument-Model>
+    <Contact-Ref ref="contrib1"/>
+    <Supplementary-Data type="TXT">ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM3995nnn/GSM3995446/suppl/GSM3995446_UC_CTCGACTT_ATCTGACC.txt.gz</Supplementary-Data>
+    <Relation type="BioSample" target="https://www.ncbi.nlm.nih.gov/biosample/SAMN12421743"/>
+    <Relation type="SRA" target="https://www.ncbi.nlm.nih.gov/sra?term=SRX6631867"/>
+  </Sample>
+</MINiML>
