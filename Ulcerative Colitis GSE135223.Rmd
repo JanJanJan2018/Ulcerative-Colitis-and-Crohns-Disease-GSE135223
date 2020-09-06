@@ -146,9 +146,316 @@ bodySystems <- read.csv('vitaminAndBodySystemSums.csv',sep=',',
                         stringsAsFactors=F)
 ```
 
+
+Lets add in some more body system genes to look at, such as sulfate, phosphorus, gluten, fiber, fat, cellulose, milk, and vegetable oil, nitrous oxygen, creatine, taurine, potassium, Niacin, Choline bitartrate, L-arginine alpha-ketoglutarate (AKG), L-citruline, L-arginine hydrochloride, caffeine anhydrous, L-tyrosine, L-carnitine L-tartrate, green coffee extract, silicon dioxide, malic acid, sucralose, FD&C Red No. 40, Acesulfame-Potassium.
+```{r,eval=F}
+source('geneCards2.R')
+```
+
+
+```{r,eval=F}
+find25genes('sulfate')
+find25genes('phosphorus')
+find25genes('gluten')
+find25genes('fiber')
+find25genes('fat')
+find25genes('cellulose')
+find25genes('milk')
+find25genes('vegetable oil')
+find25genes('nitrous oxygen')
+find25genes('creatine')
+find25genes('taurine')
+find25genes('potassium')
+find25genes('niacin')
+find25genes('choline bitartrate')
+find25genes('L-arginine alpha-ketoglutarate')
+find25genes('L-citruline')
+find25genes('L-arginine hydrochloride')
+find25genes('caffeine anhydrous')
+find25genes('L-tyrosine')
+find25genes('L-carnitine L-tartrate')
+find25genes('green coffee extract')
+find25genes('silicon dioxide')
+find25genes('malic acid')
+find25genes('sucralose')
+find25genes('FD&C Red No. 40')
+find25genes('acesulfame-potassium')
+
+
+```
+
+
+```{r,eval=F}
+getProteinGenes('sulfate')
+getProteinGenes('phosphorus')
+getProteinGenes('gluten')
+getProteinGenes('fiber')
+getProteinGenes('fat')
+getProteinGenes('cellulose')
+getProteinGenes('milk')
+getProteinGenes('vegetable oil')
+getProteinGenes('nitrous oxygen')
+getProteinGenes('creatine')
+getProteinGenes('taurine')
+getProteinGenes('potassium')
+getProteinGenes('niacin')
+getProteinGenes('choline bitartrate')
+getProteinGenes('L-arginine alpha-ketoglutarate')
+getProteinGenes('L-citruline')
+getProteinGenes('L-arginine hydrochloride')
+getProteinGenes('caffeine anhydrous')
+getProteinGenes('L-tyrosine')
+getProteinGenes('L-carnitine L-tartrate')
+getProteinGenes('green coffee extract')
+getProteinGenes('silicon dioxide')
+getProteinGenes('malic acid')
+getProteinGenes('sucralose')
+getProteinGenes('FD&C Red No. 40')
+getProteinGenes('acesulfame-potassium')
+
+
+```
+
+
+```{r,eval=F}
+
+vegOil <- read.csv('Top25vegetable-oils.csv')
+milk <- read.csv('Top25milks.csv')
+cellulose <- read.csv('Top25celluloses.csv')
+fat <- read.csv('Top25fats.csv')
+fiber <- read.csv('Top25fibers.csv')
+gluten <- read.csv('Top25glutens.csv')
+phosphorus <- read.csv('Top25phosphoruss.csv')
+sulfate <- read.csv('Top25sulfates.csv')
+NO <- read.csv('Top25nitrous-oxygens.csv')
+creatine <- read.csv('Top25creatines.csv')
+taurine <- read.csv('Top25taurines.csv')
+potassium <- read.csv("Top25potassiums.csv")
+niacin <- read.csv("Top25niacins.csv")
+choline_bitartrates <- read.csv('Top25choline-bitartrates.csv')
+L_arginine_alpha_ketoglutarates <- read.csv("Top25l-arginine-alpha-ketoglutarates.csv")
+L_citruline <- read.csv("Top25l-citrulines.csv")
+L_arginine_hydrochloride <- read.csv("Top25l-arginine-hydrochlorides.csv")
+caffeine_anhydrous <- read.csv("Top25caffeine-anhydrouss.csv")
+L_tyrosine <- read.csv("Top25l-tyrosines.csv")
+L_carnitine_L_tartrates <- read.csv("Top25l-carnitine-l-tartrates.csv")
+green_coffee_extract <- read.csv("Top25green-coffee-extracts.csv")
+silicon_dioxide <- read.csv("Top25silicon-dioxides.csv")
+malic_acid <- read.csv("Top25malic-acids.csv")
+sucralose <- read.csv("Top25sucraloses.csv")
+FDC_Red_NO_40 <- read.csv("Top25fd&c-red-no.-40s.csv")
+acesulfame_potassium <- read.csv("Top25acesulfame-potassiums.csv")
+
+
+```
+
+
+```{r,eval=F}
+
+for (i in sulfate$proteinType[1:3]){
+ getSummaries2(i,'sulfate')
+}
+
+for (i in phosphorus$proteinType[1:3]){
+ getSummaries2(i,'phosphorus')
+}
+
+for (i in gluten$proteinType[1:3]){
+ getSummaries2(i,'gluten')
+}
+
+for (i in fiber$proteinType[1:3]){
+ getSummaries2(i,'fiber')
+}
+
+for (i in fat$proteinType[1:3]){
+ getSummaries2(i,'fat')
+}
+
+for (i in cellulose$proteinType[1:3]){
+ getSummaries2(i,'cellulose')
+}
+
+for (i in milk$proteinType[1:3]){
+ getSummaries2(i,'milk')
+}
+
+for (i in vegOil$proteinType[1:3]){
+ getSummaries2(i,'vegetable oil')
+}
+
+
+for (i in NO$proteinType[1:3]){
+  getSummaries2(i,'nitrous oxygen')
+}
+
+for (i in creatine$proteinType[1:3]){
+  getSummaries2(i,'creatine')
+}
+
+for (i in taurine$proteinType[1:3]){
+  getSummaries2(i,'taurine')
+}
+
+for (i in potassium$proteinType[1:3]){
+  getSummaries2(i,'potassium')
+}
+
+for (i in niacin$proteinType[1:3]){
+  getSummaries2(i,'niacin')
+}
+
+for (i in choline_bitartrates$proteinType[1:3]){
+  getSummaries2(i,'choline bitartrates')
+}
+
+for (i in L_arginine_alpha_ketoglutarates$proteinType[1:3]){
+  getSummaries2(i,'L-arginine alpha-ketoglutarate')
+}
+
+for (i in L_citruline$proteinType){
+  getSummaries2(i,'L-citruline')
+}
+
+for (i in L_arginine_hydrochloride$proteinType[1:3]){
+  getSummaries2(i,'L-arginine hydrochloride')
+}
+
+for (i in caffeine_anhydrous$proteinType[1:3]){
+  getSummaries2(i,'caffeine anhydrous')
+}
+
+for (i in L_tyrosine$proteinType[1:3]){
+  getSummaries2(i,'L-tyrosine')
+}
+
+for (i in L_carnitine_L_tartrates$proteinType[1:3]){
+  getSummaries2(i,'L-carnitine L-tartrate')
+}
+
+for (i in green_coffee_extract$proteinType[1:3]){
+  getSummaries2(i,'green coffee extract')
+}
+
+for (i in silicon_dioxide$proteinType[1:3]){
+  getSummaries2(i,'silicon dioxide')
+}
+
+for (i in malic_acid$proteinType[1:3]){
+  getSummaries2(i,'malic acid')
+}
+
+for (i in sucralose$proteinType[1:3]){
+  getSummaries2(i,'sucralose')
+}
+
+for (i in FDC_Red_NO_40$proteinType[1:3]){
+  getSummaries2(i,'FD&C Red No. 40')
+}
+
+for (i in acesulfame_potassium$proteinType[1:3]){
+  getSummaries2(i,'acesulfame-potassium')
+}
+
+
+```
+
+
+```{r,eval=F}
+getGeneSummaries('sulfate')
+getGeneSummaries('phosphorus')
+getGeneSummaries('gluten')
+getGeneSummaries('fiber')
+getGeneSummaries('fat')
+getGeneSummaries('cellulose')
+getGeneSummaries('milk')
+getGeneSummaries('vegetable oil')
+getGeneSummaries('nitrous oxygen')
+getGeneSummaries('creatine')
+getGeneSummaries('taurine')
+getGeneSummaries('potassium')
+getGeneSummaries('niacin')
+getGeneSummaries('choline bitartrates')
+getGeneSummaries('L-arginine alpha-ketoglutarate')
+getGeneSummaries('L-citruline')
+getGeneSummaries('L-arginine hydrochloride')
+getGeneSummaries('caffeine anhydrous')
+getGeneSummaries('L-tyrosine')
+getGeneSummaries('L-carnitine L-tartrate')
+getGeneSummaries('green coffee extract')
+getGeneSummaries('silicon dioxide')
+getGeneSummaries('malic acid')
+getGeneSummaries('sucralose')
+getGeneSummaries('FD&C Red No. 40')
+getGeneSummaries('acesulfame-potassium')
+
+
+```
+
+
+```{r,eval=F}
+
+sulfateSumms <- read.csv("proteinGeneSummaries_sulfate.csv")
+phosphorusSumms <- read.csv("proteinGeneSummaries_phosphorus.csv")
+glutenSumms <- read.csv("proteinGeneSummaries_gluten.csv")
+fiberSumms <- read.csv("proteinGeneSummaries_fiber.csv")
+fatSumms <- read.csv("proteinGeneSummaries_fat.csv")
+celluloseSumms <- read.csv("proteinGeneSummaries_cellulose.csv")
+milkSumms <- read.csv("proteinGeneSummaries_milk.csv")
+vegOilSumms <- read.csv("proteinGeneSummaries_vegetable-oil.csv")
+NOSumms <- read.csv("proteinGeneSummaries_nitrous-oxygen.csv")
+creatineSumms <- read.csv("proteinGeneSummaries_creatine.csv")
+taurineSumms <- read.csv("proteinGeneSummaries_taurine.csv")
+
+potassiumSumms <- read.csv("proteinGeneSummaries_potassium.csv")
+niacinSumms <- read.csv("proteinGeneSummaries_niacin.csv")
+choline_bitartratesSumms <- read.csv("proteinGeneSummaries_choline-bitartrates.csv")
+L_arginine_alpha_ketoglutaratesSumms <- read.csv("proteinGeneSummaries_l-arginine-alpha-ketoglutarate.csv")
+L_citrulineSumms <- read.csv("proteinGeneSummaries_l-citruline.csv")
+L_arginine_hydrochlorideSumms <- read.csv("proteinGeneSummaries_l-arginine-hydrochloride.csv")
+caffeine_anhydrousSumms <- read.csv("proteinGeneSummaries_caffeine-anhydrous.csv")
+L_tyrosineSumms <- read.csv("proteinGeneSummaries_l-tyrosine.csv")
+L_carnitine_L_tartratesSumms <- read.csv("proteinGeneSummaries_l-carnitine-l-tartrate.csv")
+green_coffee_extractSumms <- read.csv("proteinGeneSummaries_green-coffee-extract.csv")
+silicon_dioxideSumms <- read.csv("proteinGeneSummaries_silicon-dioxide.csv")
+malic_acidSumms <- read.csv("proteinGeneSummaries_malic-acid.csv")
+acesulfame_potassiumSumms <- read.csv("proteinGeneSummaries_acesulfame-potassium.csv")
+FDC_Red_NO_40Summs <- read.csv("proteinGeneSummaries_fd&c-red-no.-40.csv")
+sucraloseSumms <- read.csv("proteinGeneSummaries_sucralose.csv")
+
+```
+
+
+```{r,eval=F}
+bodySystems2 <- rbind(bodySystems,sulfateSumms,phosphorusSumms,
+                      glutenSumms,fiberSumms,fatSumms,
+                      celluloseSumms,milkSumms,vegOilSumms,
+                      NOSumms,creatineSumms,taurineSumms,
+                      potassiumSumms,niacinSumms,choline_bitartratesSumms,
+                      L_citrulineSumms,L_arginine_hydrochlorideSumms,
+                      L_arginine_alpha_ketoglutaratesSumms,
+                      caffeine_anhydrousSumms,L_tyrosineSumms,
+                      L_carnitine_L_tartratesSumms,
+                      green_coffee_extractSumms,silicon_dioxideSumms,
+                      malic_acidSumms,acesulfame_potassiumSumms,
+                      FDC_Red_NO_40Summs,sucraloseSumms)
+```
+
+
+```{r,eval=F}
+write.csv(bodySystems2,'bodySystems2-vitMinerals3Summs.csv',row.names=F)
+```
+
+
+```{r}
+bodySystems2 <- read.csv('bodySystems2-vitMinerals3Summs.csv',sep=',',
+                         header=T, na.strings=c('',' ','NA'),
+                         stringsAsFactors = F)
+```
+
 Lets merge the data
 ```{r}
-DF <- merge(bodySystems,Data,by.x='EnsemblID',by.y='Ensembl_ID')
+DF <- merge(bodySystems2,Data,by.x='EnsemblID',by.y='Ensembl_ID')
 ```
 
 ```{r}
@@ -230,26 +537,11 @@ DF8 <- DF7[,-c(4:5)]
 ```
 
 
-```{r}
+```{r,eval=F}
 write.csv(DF7,'UC_CD_mock_vit3_3summs.csv',row.names=F)
 write.csv(DF8,'UC_CD_mock_vit3_1summ.csv',row.names=F)
 write.csv(header,'header.csv',row.names=F)
 write.csv(metaProbeData5lines,'metaProbeInfo.csv',row.names=F)
 write.csv(Data,'sampleData.csv',row.names=F)
-```
-
-
-```{r}
-
-```
-
-
-```{r}
-
-```
-
-
-```{r}
-
 ```
 
